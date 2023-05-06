@@ -1,9 +1,11 @@
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class Server {
     private ServerSocket serverSocket;
@@ -19,9 +21,10 @@ public class Server {
         System.out.println("Client connected ");
     }
 
-    public void getId() throws IOException {
+    public int getId() throws IOException {
         int id = in.read();
         System.out.println("Client id:"+id);
+        return id;
     }
 
     public void stop() throws IOException {
@@ -31,16 +34,26 @@ public class Server {
         serverSocket.close();
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, SQLException {
 
-        DbConnection db = new DbConnection();
+        DbFunctionality db = new DbFunctionality();
 
         //Establish  connection with our database
-        db.connect_to_db("insuranceCompany","postgres","root");
+        Connection conn = db.connect_to_db("insuranceCompany","postgres","root");
 
         Server server = new Server();
         server.start(4951);
-        server.getId();
+        int id = server.getId();
+
+        ResultSet data = db.readData(conn, id);
+
+        while(data.next()){
+            System.out.print(data.getString("id")+" ");
+            System.out.print(data.getString("nick")+" ");
+            System.out.println(data.getString("login")+" ");
+        }
+
+        server.stop();
 
     }
 }

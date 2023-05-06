@@ -1,7 +1,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
-public class DbConnection {
+public class DbFunctionality {
     public Connection connect_to_db(String dbName, String user, String pass){
 
         Connection conn = null;
@@ -20,5 +22,20 @@ public class DbConnection {
         }
 
         return conn;
+    }
+
+    public ResultSet readData(Connection conn, int id){
+        Statement statement;
+        ResultSet resultSet = null;
+        try{
+            String query = String.format("select id,nick,login from users");
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery(query);
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
+
+        return resultSet;
     }
 }
