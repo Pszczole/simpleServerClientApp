@@ -22,4 +22,5 @@ albo poprawne dane (auta oraz oferty ubezpieczeń).
 
 Jak zoptymalizować moje rozwiązanie, aby obsługiwało wiele klientów?
 
-Jeśli chcielibyśmy obsługiwać wielu klientów naraz, to musielibyśmy zastosować wątki w tym przypadku, każdy klient byłby osobnym wątkiem. Również należałoby przekształcić serwer, aby mógł obsługiwać wiele wątków na raz.
+Jeśli chcielibyśmy obsługiwać wielu klientów naraz, to musielibyśmy zastosować wątki w tym przypadku, każdy klient byłby osobnym wątkiem.
+Również należałoby przekształcić serwer, aby mógł obsługiwać wiele wątków na raz.
