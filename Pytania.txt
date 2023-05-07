@@ -1,18 +1,24 @@
 Co można poprawić w strukturze bazy danych?
 
-Pole users.login musi być zmienną unikatową, aby można było utworzyć klucz obcy i się do niej odwoływać, ponieważ w przypadku kiedy dwóch użytkowników wybierze ten sam login to nie będzie wiadomo, do którego loginu przypisać dany pojazd.
+Pole users.login musi być zmienną unikatową, aby można było utworzyć klucz obcy i się do niej odwoływać,
+ponieważ w przypadku kiedy dwóch użytkowników wybierze ten sam login to nie będzie wiadomo, do którego loginu przypisać dany pojazd.
 
-W przypadku insert_time w tabeli Vehicles oraz Insurance_Offers, można dodać również opcję default now(), aby nie było potrzeby wpisywania tego podczas dodawania rekordów do bazy danych.
+W przypadku insert_time w tabeli Vehicles oraz Insurance_Offers, można dodać również opcję default now(),
+aby nie było potrzeby wpisywania tego podczas dodawania rekordów do bazy danych.
 
-W przypadku column users.id, vehicles.id oraz insurance_offers.id można by było zastosować automatyczne generowanie wartości, aby nie było potrzeby podawania id podczas dodawania rekordów do baz danych.
+W przypadku column users.id, vehicles.id oraz insurance_offers.id można by było zastosować automatyczne generowanie wartości,
+aby nie było potrzeby podawania id podczas dodawania rekordów do baz danych.
 
-W momencie w którym posiadamy pole users.login, moglibyśmy zrezygnować z pola users.nick, jeśli jest to baza danych firmy zajmującej się wyszukiwaniem ubezpieczeń to wydaje mi się, że to pole jest niepotrzebne. 
+W momencie w którym posiadamy pole users.login, moglibyśmy zrezygnować z pola users.nick,
+jeśli jest to baza danych firmy zajmującej się wyszukiwaniem ubezpieczeń to wydaje mi się, że to pole jest niepotrzebne. 
 
 Zastanowiłbym się nad zmianą pola vehicles.login na vehicles.user_id i w tym przypadku odniesienia się zamiast do pola users.login to do pola users.id. 
 
 Jak weryfikować po stronie serwera czy klient jest właścicielem konta?
 
-Można by zrezygnować z wymuszania, od klienta podania swojego id. Klient powinien podać swój login oraz hasło następnie serwer, by weryfikował login oraz hasło wraz z bazą danych i w zależności od poprawności danych podanych przez klienta zwracał albo informację o błędnych danych logowania, albo poprawne dane (auta oraz oferty ubezpieczeń).
+Można by zrezygnować z wymuszania, od klienta podania swojego id. Klient powinien podać swój login oraz hasło następnie serwer,
+by weryfikował login oraz hasło wraz z bazą danych i w zależności od poprawności danych podanych przez klienta zwracał albo informację o błędnych danych logowania,
+albo poprawne dane (auta oraz oferty ubezpieczeń).
 
 Jak zoptymalizować moje rozwiązanie, aby obsługiwało wiele klientów?
 
